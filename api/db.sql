@@ -1,0 +1,10 @@
+DROP SCHEMA todo CASCADE;
+
+CREATE SCHEMA todo;
+
+  CREATE TABLE todo.list (
+    id SMALLINT NOT NULL,
+    name VARCHAR(256) NOT NULL,
+    completed BOOLEAN NOT NULL,
+    PRIMARY KEY (id)
+  );

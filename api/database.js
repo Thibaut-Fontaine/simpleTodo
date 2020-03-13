@@ -1,16 +1,16 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  user: 'thibaut',
+  user: 'x',
   host: 'localhost',
-  database: 'digistre',
-  password: 'digistre!!555',
+  database: 'todo',
+  password: 'todo',
   port: 5432,
-})
+});
 
-const insertData = data => new Promise((resolve, reject) => {
+const insertData = (i, data) => new Promise((resolve, reject) => {
   pool.query(
-    `INSERT into todo.table values('${data.name}', '${data.completed}')`,
+    `INSERT into todo.list values('${i}', '${data.name}', '${data.completed}')`,
     (err, res) => {
       if (err) { reject(err); }
       resolve(res);
@@ -20,7 +20,7 @@ const insertData = data => new Promise((resolve, reject) => {
 
 const selectData = () => new Promise((resolve, reject) => {
   pool.query(
-    'SELECT * FROM todo.table',
+    'SELECT * FROM todo.list',
     (err, res) => {
       if (err) { reject(err); }
       resolve(res);
@@ -28,9 +28,9 @@ const selectData = () => new Promise((resolve, reject) => {
   );
 });
 
-const deleteData = data => new Promise((resolve, reject) => {
+const deleteData = i => new Promise((resolve, reject) => {
   pool.query(
-    `DELETE FROM todo.table WHERE 'name' = '${data}'`,
+    `DELETE FROM todo.list WHERE 'id' = '${i}'`,
     (err, res) => {
       if (err) { reject(err); }
       resolve(res);
@@ -38,9 +38,19 @@ const deleteData = data => new Promise((resolve, reject) => {
   );
 });
 
-const updateData = data => new Promise((resolve, reject) => {
+const updateData = (i, data) => new Promise((resolve, reject) => {
   pool.query(
-    `UPDATE todo.table SET 'name' = '${data}'`,
+    `UPDATE todo.list SET 'name' = '${data.name}', 'completed' = '${data.completed}' WHERE id = '${i}'`,
+    (err, res) => {
+      if (err) { reject(err); }
+      resolve(res);
+    },
+  );
+});
+
+const truncateData = () => new Promise((resolve, reject) => {
+  pool.query(
+    'TRUNCATE TABLE todo.list',
     (err, res) => {
       if (err) { reject(err); }
       resolve(res);
@@ -52,5 +62,6 @@ module.exports = {
   insertData,
   selectData,
   updateData,
-  deleteData
-}
+  deleteData,
+  truncateData,
+};

@@ -1,0 +1,26 @@
+{
+  "name": "todo-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thibaut-Fontaine/simpleTodo.git"
+  },
+  "author": "Thibaut Fontaine",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Thibaut-Fontaine/simpleTodo/issues"
+  },
+  "homepage": "https://github.com/Thibaut-Fontaine/simpleTodo#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "pg": "^7.18.2"
+  }
+}

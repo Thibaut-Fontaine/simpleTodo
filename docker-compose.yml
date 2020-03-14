@@ -1,0 +1,19 @@
+version: "3"
+services:
+  app:
+    image: todo_app
+    depends_on:
+      - api
+    ports:
+      - "8080:8080"
+    networks:
+      - todo_net
+  api:
+    image: todo_api
+    ports:
+      - "5000:5000"
+    networks:
+      - todo_net
+
+networks:
+  todo_net:

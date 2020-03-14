@@ -34,8 +34,11 @@ GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA todo TO x;
 
 ``` bash
 docker build -t todo_api api
-docker run -p 5000:5000 todo_api
 
 docker build -t todo_app app
-docker run -p 8080:8080 todo_app
+
+docker-compose up
+
+#docker run --name x -e POSTGRES_PASSWORD=todo -d -p 5432:5432 postgres:alpine
+#docker exec -it postgres-0 bash
 ```
